@@ -2,6 +2,7 @@ body{
     width: 100%;
     height: 100%;
     margin: 0 auto;
+    font-family: 'Roboto', sans-serif;
 }
 
 .wrapper{
@@ -124,6 +125,5 @@ body{
 }
 
 .recommend-group .tagcontainer{
-    border: 0.075rem solid #E88128;
     width: auto;
 }
