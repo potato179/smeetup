@@ -43,3 +43,39 @@ body{
     background-color: #2561F8;
     font-size: 1rem;
 }
+
+#input{
+    border-radius: 3000rem;
+    border: 0.1rem solid #CBCBCB;
+    margin-top: 1rem;
+    margin-left: auto;
+    margin-right: auto;
+    width: 80%;
+    height: 2.5rem;
+    padding: auto;
+}
+
+#icon-search{
+    font-size: 0.75rem;
+    float: left;
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-left: 1.25rem;
+}
+
+#input-search{
+    font-size: 0.75rem;
+    display: inline-block;
+    background: transparent; 
+    width: 90%; 
+    margin-left: 1rem;
+    color: #666666;
+    border: none; 
+    margin-left: 0.5rem;
+}
+
+#recommend-user-txt{
+    margin-left: 10%;
+    font-size: 1.25rem;
+    margin-top: 1rem;
+}
