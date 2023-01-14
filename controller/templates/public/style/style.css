@@ -170,3 +170,41 @@ body{
 .community-content .content{
     font-size: 0.75rem;
 }
+
+.chat-txt{
+    margin-left: 10%;
+    margin-top: 2.5rem;
+    font-size: 1.25rem;
+}
+
+#group-chat-container{
+    margin-left: 10%;
+    margin-right: 10%;
+}
+
+#group-chat-container .group-chat{
+    border-radius: 0.75rem;
+    background-color: white;
+    width: 100%;
+}
+
+.group-chat .chat-title{
+    margin: 1rem;
+    margin-bottom: 0;
+    font-size: 1rem;
+}
+
+.group-chat .chat-content{
+    margin: 1rem;
+    margin-top: 0;
+    font-size: 0.8rem;
+}
+
+.group-chat .chat-unread{
+    float: right;
+    vertical-align: baseline;
+    background-color: blue;
+    color: white;
+    border-radius: 3000rem;
+    padding: 0.25rem;
+}
