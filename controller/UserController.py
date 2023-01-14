@@ -122,8 +122,6 @@ class profile(Resource):
         userEntity = User.query.filter_by(name=param['username']).first()
         regionEntity = Region.query.filter_by(id=int(userEntity.region_id)).first()
         reviewEntity = Review.query.filter_by(user_id=userEntity.id).all()
-        value = request.form.getlist(reviewEntity)
-        return jsonify(value)
 
 
 @user.route("/review")
@@ -132,19 +130,9 @@ class review(Resource):
     def post(self):
         param = request.get_json()
         userEntity = User.query.filter_by(name=param['targetName']).first()
-        reviews = Review(user=userEntity,
-                              body=param['body'],
-                              score=param['score'])
-        response = "{"
-        for reviewEntity in reviews:
-            temp_str = "{" \
-                    + f"'targetUser': {str(reviewEntity.user_id)}" \
-                    + f"'body': {str(reviewEntity.body)}" \
-                    + f"'score': {int(reviewEntity.score)}" \
-                    + f"'writeCheck': '리뷰 작성 성공'"
-            response = response + temp_str
-
-        response = response + "}"
+        reviewEntity = Review(user=userEntity,
+                         body=param['body'],
+                         score=param['score'])
 
         db.session.add(reviewEntity)
         db.session.commit()
