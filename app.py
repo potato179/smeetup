@@ -1,9 +1,11 @@
+import flask
 from flask import Flask
 from flask_restx import Api
 from flask_migrate import Migrate
 from flask_sqlalchemy import SQLAlchemy
 import config
 from sqlalchemy import MetaData
+from flask_cors import CORS
 
 api = Api(
     version='1.0',
@@ -27,6 +29,7 @@ migrate = Migrate()
 
 def create_app():
     app = Flask(__name__)
+    CORS(app)
 
     api.init_app(app)
     app.config.from_object(config)

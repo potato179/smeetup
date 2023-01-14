@@ -1,3 +1,4 @@
+from flask_cors import cross_origin
 from werkzeug.security import generate_password_hash
 from flask import request, flash, session, jsonify, logging, g
 from flask_restx import Namespace, Resource, fields
@@ -43,6 +44,7 @@ review_model = User.model(
 
 # 스웨거 적용 위해 클래스로 생성하기
 @User.route('/sign-up')
+# @cross_origin()
 class Sign_up(Resource):
     # noinspection PyMethodMayBeStatic
     @User.expect(user_model)
@@ -51,13 +53,13 @@ class Sign_up(Resource):
 
         # 지역 엔티티 받아오기
         region = Region.query.filter_by(name=param["regionName"]).first()
-        print(region)
+
         # 유저 생성
-        userEntity = User(name=param["username"],
-                          password=generate_password_hash(param["password"]),
-                          region_id=region.id,
-                          study_score=0,
-                          age=param['age'])
+        userEntity = User2(name=param["username"],
+                           password=generate_password_hash(param["password"]),
+                           region_id=region.id,
+                           study_score=0,
+                           age=param['age'])
         db.session.add(userEntity)
         db.session.commit()
 

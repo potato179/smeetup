@@ -39,8 +39,6 @@ class ArtWrite(Resource):
         param = request.get_json()
         g.user = User.query.get(session["user_id"])
 
-        # now = datetime.today()
-        # date = str(now.year) + "-" + str(now.month) + "-" + str(now.day)
         now = datetime.now()
         artEntity = Board(title=param['title'],
                           body=param['body'],
@@ -74,7 +72,6 @@ class ArtWrite(Resource):
         return jsonify(json.loads(df))
 
 
-
 @board.route("/Board/search")
 class Search(Resource):
     @board.expect(search_model)
@@ -104,4 +101,3 @@ class Search(Resource):
                     Board.user_id == User.id
                 )
         return
-
