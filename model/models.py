@@ -7,14 +7,17 @@ class Board(db.Model):
     # ID 식별자
     id = db.Column(db.Integer, primary_key=True)
     # 제목 ( 스터디 구인글 )
-    title = db.Column(db.String(200), nullable=False)
+    title = db.Column(db.String(200), nullable=False, unique=True)
     # 내용
     body = db.Column(db.Text(), nullable=False)
+    # 조회수
+    views = db.Column(db.Integer, nullable=False)
     # 게시일 ( 작성일 )
     reg_date = db.Column(db.DateTime(), nullable=False)
     # 유저 ID
     user_id = db.Column(db.Integer, db.ForeignKey('users.id', ondelete='CASCADE'), nullable=False)
     user = db.relationship('User', backref=db.backref('board'))
+    keyword = db.Column(db.String(200))
 
 
 # 유저
@@ -23,7 +26,8 @@ class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(150), unique=True, nullable=False)
     password = db.Column(db.String(200), nullable=False)
-    study_score = db.Column(db.Integer)
+    study_score = db.Column(db.Integer, nullable=False)
+    age = db.Column(db.Integer)
     # 지역 ID
     region_id = db.Column(db.Integer, db.ForeignKey('region.id', ondelete='CASCADE'), nullable=False)
     region = db.relationship('Region')
@@ -59,5 +63,3 @@ class Review(db.Model):
     body = db.Column(db.Text(), nullable=False)
     # 평점
     score = db.Column(db.Integer, nullable=False)
-
-

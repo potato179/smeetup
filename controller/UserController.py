@@ -1,7 +1,5 @@
-import json
-
 from werkzeug.security import generate_password_hash
-from flask import request, flash, session, Response, jsonify, render_template
+from flask import request, flash, session, render_template
 from flask_restx import Namespace, Resource, fields
 from model.models import User, Region, Review
 from app import db
@@ -14,7 +12,8 @@ user_model = user.model(
     "User", {
         "regionName": fields.String(description="지역명", required=True, example="Seoul"),
         "username": fields.String(description='사용자 이름(ID)', required=True, example="1234"),
-        "password": fields.String(description="비밀번호", required=True, example="1234")
+        "password": fields.String(description="비밀번호", required=True, example="1234"),
+        "age": fields.Integer(description="나이", required=True, example=17)
     }
 )
 
@@ -42,7 +41,7 @@ review_model = user.model(
 
 # 스웨거 적용 위해 클래스로 생성하기
 @user.route('/sign-up')
-class example(Resource):
+class Sign_up(Resource):
     # noinspection PyMethodMayBeStatic
     @user.expect(user_model)
     def post(self):
@@ -51,14 +50,12 @@ class example(Resource):
         # 지역 엔티티 받아오기
         region = Region.query.filter_by(name=param['regionName']).first()
 
-        if region is None:
-            print("region Entity is None !")
-
-        # 유저 DTO 생성
+        # 유저 생성
         userEntity = User(name=param["username"],
                           password=generate_password_hash(param["password"]),
                           region=region,
-                          study_score=0)
+                          study_score=0,
+                          age=param['age'])
         db.session.add(userEntity)
         db.session.commit()
 
@@ -66,13 +63,17 @@ class example(Resource):
             "id": userEntity.id,
             "name": userEntity.name,
             "password": userEntity.password,
+            "age": userEntity.age,
             "region": region.name,
             "study_score": userEntity.study_score
         }
 
 
 @user.route('/login')
-class login(Resource):
+class Login(Resource):
+    def get(self):
+        return render_template("login.html")
+
     @user.expect(login_model)
     def post(self):
         param = request.get_json()
@@ -107,14 +108,14 @@ class login(Resource):
 
 
 @user.route("/logout")
-class logout(Resource):
+class Logout(Resource):
     def post(self):
         session.clear()
-        return "로그아웃 성공"
+        return render_template("", result="로그아웃 성공")
 
 
 @user.route("/profile")
-class profile(Resource):
+class Profile(Resource):
     @user.expect(profile_model)
     def post(self):
         param = request.get_json()
@@ -123,18 +124,38 @@ class profile(Resource):
         regionEntity = Region.query.filter_by(id=int(userEntity.region_id)).first()
         reviewEntity = Review.query.filter_by(user_id=userEntity.id).all()
 
+        return render_template("", reviews=reviewEntity,
+                               name=userEntity.name,
+                               age=userEntity.age,
+                               study_score=userEntity.study_score,
+                               region=regionEntity.name)
+
 
 @user.route("/review")
-class review(Resource):
+class Review(Resource):
     @user.expect(review_model)
     def post(self):
         param = request.get_json()
         userEntity = User.query.filter_by(name=param['targetName']).first()
-        reviewEntity = Review(user=userEntity,
-                              body=param['body'],
-                              score=param['score'])
-
-        db.session.add(reviewEntity)
+        reviews = Review(user=userEntity,
+                         body=param['body'],
+                         score=param['score'])
+        db.session.add(reviews)
         db.session.commit()
 
-        return render_template()
+        # regionEntity = Region.query.filter_by(id=userEntity.region_id).first()
+
+        # response = "{"
+        # for reviewEntity in reviews:
+        #     temp_str = "{" \
+        #                + f"'targetUser': {str(reviewEntity.user_id)}" \
+        #                + f"'body': {str(reviewEntity.body)}" \
+        #                + f"'score': {int(reviewEntity.score)}" \
+        #                + f"'writeCheck': '리뷰 작성 성공'"
+        #     response = response + temp_str
+        #
+        # response = response + "}"
+
+        return {
+            "result": "리뷰 작성 성공"
+        }
