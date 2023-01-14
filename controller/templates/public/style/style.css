@@ -76,6 +76,54 @@ body{
 
 #recommend-user-txt{
     margin-left: 10%;
-    font-size: 1.25rem;
     margin-top: 1rem;
+    font-size: 1.25rem;
+}
+
+#recommend-user{
+    width: 3rem;
+    text-align: center;
+    margin-left: 10%;
+    margin-top: 0.75rem;
+    font-size: 0.75rem;
+}
+
+#recommend-user img{
+    width: 3rem;
+}
+
+#recommend-user .rname{
+    margin-top: 0.25rem;
+    padding: 0;
+    color: black;
+}
+
+#recommend-user .rtag{
+    margin-top: 0rem;
+    color: #2560F8;
+}
+
+#groups{
+    margin-top: 1.25rem;
+}
+
+.recommend-group{
+    margin-left: 10%;
+    margin-right: 10%;
+    background-color: #F8F8F8;
+    border-radius: 1rem;
+    padding: 1rem;
+}
+
+.recommend-group .title{
+    font-size: 1rem;
+}
+
+.recommend-group .time, .location, .target{
+    font-size: 0.75rem;
+}
+
+.recommend-group .tagcontainer{
+    border: 0.075rem solid #E88128;
+    width: auto;
 }
