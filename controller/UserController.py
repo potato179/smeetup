@@ -1,7 +1,7 @@
 import json
 
 from werkzeug.security import generate_password_hash
-from flask import request, flash, session, Response, jsonify
+from flask import request, flash, session, Response, jsonify, render_template
 from flask_restx import Namespace, Resource, fields
 from model.models import User, Region, Review
 from app import db
@@ -131,15 +131,10 @@ class review(Resource):
         param = request.get_json()
         userEntity = User.query.filter_by(name=param['targetName']).first()
         reviewEntity = Review(user=userEntity,
-                         body=param['body'],
-                         score=param['score'])
+                              body=param['body'],
+                              score=param['score'])
 
         db.session.add(reviewEntity)
         db.session.commit()
 
-        return {
-            "user_id": userEntity.id,
-            "body": reviewEntity.body,
-            "score": reviewEntity.score,
-            "writeCheck": "리뷰 작성 성공"
-        }
+        return render_template()
