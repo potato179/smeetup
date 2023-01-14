@@ -56,11 +56,14 @@ body{
     padding: auto;
 }
 
+#input-container{
+    width: 100%;
+    top: 50%;
+}
+
 #icon-search{
     font-size: 0.75rem;
     float: left;
-    margin-top: auto;
-    margin-bottom: auto;
     margin-left: 1.25rem;
 }
 
@@ -68,16 +71,17 @@ body{
     font-size: 0.75rem;
     display: inline-block;
     background: transparent; 
-    width: 90%; 
+    width: 80%;
     margin-left: 1rem;
     color: #666666;
     border: none; 
     margin-left: 0.5rem;
 }
 
-#recommend-user-txt{
+.recommend-user-txt{
     margin-left: 10%;
     margin-top: 1rem;
+    margin-bottom: 0.25rem;
     font-size: 1.25rem;
 }
 
@@ -108,22 +112,61 @@ body{
     margin-top: 1.25rem;
 }
 
-.recommend-group{
+.recommend-group, .community-group{
     margin-left: 10%;
     margin-right: 10%;
+    margin-bottom: 1rem;
     background-color: #F8F8F8;
     border-radius: 1rem;
-    padding: 1rem;
+    padding-top: 0.1rem;
+    padding-bottom: 0.75rem;
 }
 
 .recommend-group .title{
+    margin-left: 0.75rem;
     font-size: 1rem;
+    padding: 0;
 }
 
 .recommend-group .time, .location, .target{
+    margin-left: 0.75rem;
     font-size: 0.75rem;
 }
 
 .recommend-group .tagcontainer{
+    margin-left: 0.75rem;
     width: auto;
+}
+
+.community-user-profile{
+    margin: 0.75rem;
+}
+
+.community-user-profile img{
+    float: left;
+    width: 1.5rem;
+}
+
+.community-user-profile p{
+    float: left;
+    padding: 0;
+    margin-left: 0.75rem;
+    font-size: 0.75rem;
+}
+
+.community-content{
+    display: inline-block;
+    margin: 0.75rem;
+}
+
+.community-content p{
+    margin: 0;
+}
+
+.community-content .title{
+    font-size: 1rem;
+}
+
+.community-content .content{
+    font-size: 0.75rem;
 }
