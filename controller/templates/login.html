@@ -13,10 +13,10 @@
     </head>
     <body>
         <div class = "wrapper">
-            <form id = "login-main">
+            <form id = "login-main" action = "https://27fd-1-233-206-68.jp.ngrok.io/api/login" method = "POST">
                 <h1 id = "title">SmeetUP</h1>
-                <input id = "inputid" type = "text" placeholder = "Phone">
-                <input id = "inputpw" type = "password" placeholder = "Password">
+                <input id = "inputid" type = "text" placeholder = "Phone" name = "username">
+                <input id = "inputpw" type = "password" placeholder = "Password" name = "password">
                 <button id = "login">로그인</button>
             </form>
         </div>
