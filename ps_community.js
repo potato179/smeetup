@@ -24,16 +24,21 @@ function writeitem(req, res, next){
     })
 }
 
-function ideas_html(req, res, next){
-    res.sendFile("ideas.html", {root: __dirname});
+function community_html(req, res, next){
+    res.sendFile("community.html", {root: __dirname});
 }
 
-function view_idea_html(req, res, next){
-    res.sendFile("view_idea.html", {root: __dirname});
+function chat_html(req, res, next){
+    res.sendFile("chat.html", {root: __dirname});
+}
+
+function mypage_html(req, res, next){
+    res.sendFile("mypage.html", {root: __dirname});
 }
 
 exports.main = main;
 exports.writeitem_html = writeitem_html;
 exports.writeitem = writeitem;
-exports.ideas_html = ideas_html;
-exports.view_idea_html = view_idea_html;
+exports.community_html = community_html;
+exports.chat_html = chat_html;
+exports.mypage_html = mypage_html;
