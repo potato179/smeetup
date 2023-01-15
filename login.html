@@ -8,19 +8,20 @@
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;500;700&display=swap" rel="stylesheet">
         <script src="https://kit.fontawesome.com/06fb83cb17.js" crossorigin="anonymous"></script>
+        <script type = "text/javascript" src = "https://code.jquery.com/jquery-1.12.4.min.js"></script>
         <link rel = "stylesheet" href = "./public/style/style.css">
         <title>SmeetUP</title>
     </head>
     <body>
         <div class = "wrapper">
-            <form id = "login-main">
+            <div id = "login-main">
                 <h1 id = "title">SmeetUP</h1>
                 <input id = "inputid" type = "text" placeholder = "E-mail">
                 <input id = "inputpw" type = "password" placeholder = "Password">
                 <button id = "login" onclick = "login()">로그인</button>
-            </form>
+            </div>
         </div>
-        <script src = "./public/script/jquery.cookie.js"></script>
+        <script src = "./public/script/jquery_cookie.js"></script>
         <script>
             function login(){
                 var email = $("#inputid").val();
@@ -31,7 +32,7 @@
                     type: "GET", 
                     url : "login",
                     data: sendData, 
-                    dataType: "json", 
+                    dataType: "json",
                     success :  onSuccess,
                     error: onError
                 };
@@ -41,7 +42,7 @@
             function onSuccess (data, status, xhr) { 
                 if(data.condition == "success"){
                     alert(data.message);        
-                    window.location.href = "/main.html"
+                    window.location.href = "/main";
                 }
                 else if(data.condition == "fail"){
                     alert(data.message);

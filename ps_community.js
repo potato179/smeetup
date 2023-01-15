@@ -1,6 +1,10 @@
 const mysql_con = require("./public/script/mysql_con.js");
 var con = mysql_con.con;
 
+function main(req, res, next){
+    res.sendFile("main.html", {root: __dirname});
+}
+
 function writeitem_html(req, res, next){
     res.sendFile("writeitem.html", {root: __dirname});
 }
