@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang = "kr">
+    <head>
+        <meta charset = "UTF-8">
+        <meta name = "viewport" content = "width=device-width, initial-scale=1.0">
+        <meta http-equiv = "X-UA-Compatible" content = "ie=edge">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;500;700&display=swap" rel="stylesheet">
+        <script src="https://kit.fontawesome.com/06fb83cb17.js" crossorigin="anonymous"></script>
+        <link rel = "stylesheet" href = "./public/style/style.css">
+        <title>SmeetUP</title>
+    </head>
+    <body>
+        <div class = "wrapper">
+            <form id = "login-main">
+                <h1 id = "title">SmeetUP</h1>
+                <input id = "inputid" type = "text" placeholder = "E-mail">
+                <input id = "inputpw" type = "password" placeholder = "Password">
+                <button id = "login">로그인</button>
+            </form>
+        </div>
+        <script>
+            function login(){
+                var email = $("#inputid").val();
+                var pw = $("#inputpw").val();
+                var sendData =  {email: email, pw: pw};
+
+                var ajaxData = { 
+                    type: "GET", 
+                    url : "login",
+                    data: sendData, 
+                    dataType: "json", 
+                    success :  onSuccess,
+                    error: onError
+                };
+                $.ajax(ajaxData);
+            }
+
+            function onSuccess (data, status, xhr) { 
+                if(data.condition == "success"){
+                    alert(data.message);        
+                    window.location.href = "/main.html"
+                }
+                else if(data.condition == "fail"){
+                    alert(data.message);
+                }
+            }
+
+            function onError (jqXHR, textStatus, errorThrown) { 
+                console.log(jqXHR.responseText); 
+            }
+        </script>
+    </body>
+</html>
