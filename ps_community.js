@@ -32,6 +32,7 @@ function view_idea_html(req, res, next){
     res.sendFile("view_idea.html", {root: __dirname});
 }
 
+exports.main = main;
 exports.writeitem_html = writeitem_html;
 exports.writeitem = writeitem;
 exports.ideas_html = ideas_html;
