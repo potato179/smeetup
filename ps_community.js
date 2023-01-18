@@ -24,12 +24,24 @@ function writeitem(req, res, next){
     })
 }
 
+function view_group_html(req, res, next){
+    res.sendFile("view_group.html", {root: __dirname});
+}
+
 function community_html(req, res, next){
     res.sendFile("community.html", {root: __dirname});
 }
 
+function view_community_html(req, res, next){
+    res.sendFile("view_community.html", {root: __dirname});
+}
+
 function chat_html(req, res, next){
     res.sendFile("chat.html", {root: __dirname});
+}
+
+function view_chat_html(req, res, next){
+    res.sendFile("view_chat.html", {root: __dirname});
 }
 
 function mypage_html(req, res, next){
@@ -39,6 +51,9 @@ function mypage_html(req, res, next){
 exports.main = main;
 exports.writeitem_html = writeitem_html;
 exports.writeitem = writeitem;
+exports.view_group_html = view_group_html;
 exports.community_html = community_html;
+exports.view_community_html = view_community_html;
 exports.chat_html = chat_html;
+exports.view_chat_html = view_chat_html;
 exports.mypage_html = mypage_html;

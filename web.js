@@ -17,8 +17,11 @@ const urls = [
     {url: "/join.html", ps: ps_users.join_html},
     {url: "/main", ps: ps_community.main},
     {url: "/writeitem.html", ps: ps_community.writeitem_html},
+    {url: "/view_group.html", ps: ps_community.view_group_html},
     {url: "/community.html", ps: ps_community.community_html},
+    {url: "/view_community.html", ps: ps_community.view_community_html},
     {url: "/chat.html", ps: ps_community.chat_html},
+    {url: "/view_chat.html", ps: ps_community.view_chat_html},
     {url: "/mypage.html", ps: ps_community.mypage_html}
 ];
 
